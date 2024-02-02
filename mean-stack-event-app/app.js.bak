@@ -1,0 +1,35 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const multer = require('multer');
+const eventRoutes = require('./routes/eventRoutes');
+const path = require('path');
+const cors = require('cors');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+mongoose.connect('mongodb://username:password@localhost:27017/mean_stack_app', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection.on('connected', () => {
+  console.log('Connected to MongoDB');
+});
+
+// Serve static files from the 'browser' directory
+app.use(express.static(path.join(__dirname, 'frontend/dist/frontend/browser')));
+
+app.use('/events', eventRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

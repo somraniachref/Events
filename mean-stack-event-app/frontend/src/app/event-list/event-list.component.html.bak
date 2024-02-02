@@ -1,0 +1,20 @@
+<div class="container mt-4" style="max-width: 800px; margin: 0 auto;">
+  <h2 style="text-align: center; color: #333333;">Event List</h2>
+  <ul class="list-group">
+    <li *ngFor="let event of events" class="list-group-item" style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="flex: 1;">
+        <span class="font-weight-bold" style="color: #333333;">{{ event.name }}</span> - {{ event.category }} - {{ event.eventType }}
+      </div>
+      <div style="flex: 0;">
+        <button class="btn btn-info btn-sm mr-2" (click)="viewDetails(event._id)">View Details</button>
+        <button class="btn btn-warning btn-sm mr-2" (click)="editEvent(event._id)">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteEvent(event._id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Add a button for creating a new event -->
+  <div style="text-align: center;">
+    <button class="btn btn-success mt-3" [routerLink]="['/create']">Create Event</button>
+  </div>
+</div>

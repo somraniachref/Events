@@ -1,0 +1,12 @@
+<div style="background-color: #f0f0f0; font-family: 'Roboto', sans-serif; max-width: 800px; margin: 0 auto;">
+  <h2 style="color: #333333; text-align: center;">Event Details</h2>
+  <div *ngIf="event" style="display: flex; flex-direction: column; align-items: center;">
+    <img src="{{ event.picture }}" alt="Event picture" width="300" height="200" style="border: 5px solid #333333; box-shadow: 0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease-in-out;">
+    <h3 style="color: #333333; margin: 10px 0;">{{ event.name }}</h3>
+    <p style="color: #666666; margin: 10px 0;">{{ event.category }} | {{ event.state }} | {{ event.eventType }}</p>
+    <p style="color: #333333; margin: 10px 0;">{{ event.placeName }}</p>
+    <p style="color: #666666; margin: 10px 0;">Organized By: {{ event.organizedBy }}</p>
+    
+    <button (click)="goBack()" style="margin-top: 20px; padding: 10px 20px; border: none; border-radius: 5px; background-color: #333333; color: #ffffff; box-shadow: 0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease-in-out;">Back</button>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventCreateComponent } from './event-create/event-create.component';
+import { EventUpdateComponent } from './event-update/event-update.component';
+
+// Définition des itinéraires (routes) de l'application
+const routes: Routes = [
+  { path: '', component: EventListComponent }, // Chemin pour la liste des événements 
+  { path: 'events/:id', component: EventDetailsComponent }, // Chemin pour les détails d'un événement
+  { path: 'create', component: EventCreateComponent }, // Chemin pour créer un nouvel événement
+  { path: 'edit/:id', component: EventUpdateComponent }, // Chemin pour mettre à jour un événement existant
+];
+
+// Module pour la gestion des itinéraires de l'application
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

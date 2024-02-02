@@ -1,0 +1,61 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventService } from '../event.service';
+import { Event } from '../event.model';
+
+@Component({
+  selector: 'app-event-update',
+  templateUrl: './event-update.component.html',
+  styleUrls: ['./event-update.component.css'],
+})
+export class EventUpdateComponent implements OnInit {
+  // Options pour l'autocomplétion de l'API Google Places
+  placesOptions = {
+    types: [],
+    componentRestrictions: { country: 'tn' }, // Restriction Tunisie
+  };
+  eventId: string;
+  event: Event = {
+    name: '',
+    category: '',
+    state: '',
+    eventType: '',
+    placeName: '',
+    placeMap: '',
+    organizedBy: '',
+    picture: '',
+    // ... autres attributs
+  };
+
+  constructor(private route: ActivatedRoute, private router: Router, private eventService: EventService) {}
+
+  ngOnInit(): void {
+    // Observer les changements dans les paramètres d'URL et charger l'événement correspondant
+    this.route.params.subscribe((params) => {
+      this.eventId = params['id'];
+      this.loadEvent();
+    });
+  }
+
+  // Méthode pour charger les détails de l'événement à mettre à jour
+  loadEvent(): void {
+    this.eventService.getEventById(this.eventId).subscribe((event) => {
+      this.event = event;
+    });
+  }
+
+  // Méthode pour mettre à jour l'événement
+  updateEvent(): void {
+    // Appeler le service d'événements pour mettre à jour l'événement et naviguer vers la page d'accueil
+    this.eventService.updateEvent(this.eventId, this.event).subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  // Méthode pour gérer les modifications de l'adresse sélectionnée par l'API Google Places
+  handleAddressChange(address: any): void {
+    // Mettre à jour le nom et la carte de l'événement en fonction de l'adresse sélectionnée
+    this.event.placeName = address.name;
+    this.event.placeMap = address.formatted_address;
+  }
+}

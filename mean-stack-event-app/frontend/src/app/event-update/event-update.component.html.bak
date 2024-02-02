@@ -1,0 +1,40 @@
+<div class="container mt-4" style="max-width: 800px; margin: 0 auto;">
+  <h2 style="text-align: center; color: #333333;">Update Event</h2>
+  <form (ngSubmit)="updateEvent()" #eventForm="ngForm" style="background-color: #ffffff; border: 5px solid #333333; border-radius: 10px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <div class="form-group">
+      <label for="name" style="color: #333333;">Event Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="event.name" name="name" placeholder="Enter event name">
+    </div>
+    <div class="form-group">
+      <label for="category" style="color: #333333;">Category</label>
+      <input type="text" class="form-control" id="category" required [(ngModel)]="event.category" name="category" placeholder="Enter event category">
+    </div>
+    <div class="form-group">
+      <label for="state" style="color: #333333;">State</label>
+      <input type="text" class="form-control" id="state" required [(ngModel)]="event.state" name="state" placeholder="Enter event state">
+    </div>
+    <!-- Add other input fields for eventType, organizedBy, picture, etc. -->
+    <div class="form-group">
+      <label for="eventType" style="color: #333333;">Event Type</label>
+      <input type="text" class="form-control" id="eventType" required [(ngModel)]="event.eventType" name="eventType" placeholder="Enter event type">
+    </div>
+    <div class="form-group">
+      <label for="placeName" style="color: #333333;">Place Name</label>
+      <input type="text" class="form-control" id="placeName" required [(ngModel)]="event.placeName" name="placeName" placeholder="Enter place name">
+    </div>
+    <div class="form-group">
+      <label for="placeMap" style="color: #333333;">Place Map</label>
+      <input type="text" class="form-control" id="placeMap" required [(ngModel)]="event.placeMap" name="placeMap" placeholder="Enter place map URL">
+    </div>
+    <div class="form-group">
+      <label for="organizedBy" style="color: #333333;">Organized By</label>
+      <input type="text" class="form-control" id="organizedBy" required [(ngModel)]="event.organizedBy" name="organizedBy" placeholder="Enter organizer name">
+    </div>
+    <div class="form-group">
+      <label for="picture" style="color: #333333;">Picture</label>
+      <input type="text" class="form-control" id="picture" required [(ngModel)]="event.picture" name="picture" placeholder="Enter picture URL">
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="width: 100%;">Update Event</button>
+  </form>
+</div>

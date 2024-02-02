@@ -1,0 +1,32 @@
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { EventService } from '../event.service';
+
+@Component({
+  selector: 'app-event-details',
+  templateUrl: './event-details.component.html',
+  styleUrls: ['./event-details.component.css'],
+})
+export class EventDetailsComponent implements OnInit {
+  event: Event | undefined;
+
+  constructor(private route: ActivatedRoute, private eventService: EventService) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      const eventId = params['id'];
+      this.loadEvent(eventId);
+    });
+  }
+
+  loadEvent(id: string): void {
+    this.eventService.getEventById(id).subscribe((event) => {
+      this.event = event;
+    });
+  }
+
+  goBack(): void {
+    // Implement navigation back to the event list using Angular Router
+  }
+}
